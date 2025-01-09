@@ -1,2 +1,14 @@
+# Ignore virtual environment directory
 .venv
+
+# Ignore environment variable file (contains sensitive info)
 .env
+
+# Ignore pkg-config files
+*.pc
+*.pyc
+# Ignore pytest cache directory
+.pytest_cache/
+
+# Ignore Python bytecode cache
+__pycache__/
