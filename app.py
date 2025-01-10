@@ -11,7 +11,6 @@ load_dotenv()
 # OAUTH_EDIT_URI = os.getenv('OAUTH_EDIT_URI')
 # CONSUMER_KEY = os.getenv('CONSUMER_KEY')
 # CONSUMER_SECRET = os.getenv('CONSUMER_SECRET')
-import os
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 if not SECRET_KEY:
