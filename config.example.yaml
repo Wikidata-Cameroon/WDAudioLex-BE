@@ -1,0 +1,6 @@
+SECRET_KEY: your_secret_key
+SQLALCHEMY_DATABASE_URI: sqlite:///your_database_uri
+OAUTH_MWURI: https://your_oauth_home_project_url
+OAUTH_EDIT_URI: https://your_oauth_edit_project_url
+CONSUMER_KEY: your_consumer_key
+CONSUMER_SECRET: your_consumer_secret

@@ -1,2 +1,15 @@
+# Ignore virtual environment directory
 .venv
-.routes copy.py
+
+# Ignore environment variable file (contains sensitive info)
+.env
+
+# Ignore pkg-config files
+*.pc
+*.pyc
+# Ignore pytest cache directory
+.pytest_cache/
+
+# Ignore Python bytecode cache
+__pycache__/
+config.yaml
