@@ -12,3 +12,4 @@
 
 # Ignore Python bytecode cache
 __pycache__/
+config.yaml
