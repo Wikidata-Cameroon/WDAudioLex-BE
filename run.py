@@ -41,7 +41,6 @@ type=int,
 help="You must specify the age for a given name.",
 required=False)
 
-
 class NewUser(Resource):
 def post(self):
 args = new_user_post_args.parse_args()
@@ -54,7 +53,6 @@ response = {
 'created_on': now.strftime("%m/%d/%Y, %H:%M:%S")
 }
 return response
-
 
 api.add_resource(NewUser, "/api/new_user")
 
