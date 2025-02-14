@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask # type: ignore
 from .routes import main_bp  # Make sure the Blueprint is imported
 
 def create_app():
