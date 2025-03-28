@@ -1,5 +1,6 @@
 Comprehensive README for WDAudioLEx-BE Tool Backend
-Overview
+
+### Overview
 
 The WDAudioLEx-BE Tool Backend is a backend system built using Flask, providing functionality to support login authentication via the MediaWiki API. This project is structured to facilitate modular development and deployment, using best practices in Python development, Flask frameworks, and integration with third-party APIs for secure login.
 Features
@@ -9,8 +10,9 @@ Features
     Virtual Environment Integration: Manage dependencies effectively to ensure a consistent development experience.
     Modular Architecture: Organized project structure for easy navigation and updates.
 
-Project Structure
+### Project Structure
 
+```
 WDAudioLEx-BE/
 ├── app/
 │   ├── __init__.py        # Flask app factory
@@ -23,9 +25,11 @@ WDAudioLEx-BE/
 ├── config.py              # Configuration settings
 ├── run.py                 # Main application entry point
 └── README.md              # Project documentation
+```
 
-Installation
-1. Prerequisites
+### Installation
+
+#### 1. Prerequisites
 
     Python Version: Flask supports Python 3.9 and newer. Ensure you have Python installed.
     Flask Dependencies:
@@ -36,24 +40,20 @@ Installation
         Click: For command-line functionality.
         Blinker (Optional): Enables signal handling in Flask.
 
-2. Setup
-Step 1: Clone the Repository
+#### 2. Setup
 
+```bash
+# Step 1: Clone the Repository
 git clone https://github.com/your-repo/WDAudioLEx-BE.git
 cd WDAudioLEx-BE
-
-Step 2: Create a Virtual Environment
-
+# Step 2: Create a Virtual Environment
 python3 -m venv .venv
 source .venv/bin/activate   # On Windows: .venv\Scripts\activate
-
-Step 3: Install Dependencies
-
+# Step 3: Install Dependencies
 pip install -r requirements.txt
-
-Step 4: Run the Application
-
+# Step 4: Run the Applicatiozn
 python run.py
+```
 
 Access the application at http://127.0.0.1:5000.
 Login Authentication with MediaWiki API
@@ -68,6 +68,7 @@ Steps:
 
 Sample Code:
 
+```
 response = S.post(
     url="https://your-wiki-site/api.php",
     data={
@@ -78,6 +79,7 @@ response = S.post(
         "format": "json"
     }
 )
+```
 
 Method 2: Using action=clientlogin
 
@@ -89,6 +91,7 @@ This method is suited for interactive applications. It follows these steps:
 
 Sample Code:
 
+```
 response = S.post(
     url="https://your-wiki-site/api.php",
     data={
@@ -100,22 +103,26 @@ response = S.post(
         "format": "json"
     }
 )
+```
 
-Configuration
+### Configuration
 
 The application configuration is managed in config.py. Update the following settings as per your environment:
 
+```python
 class Config:
     SECRET_KEY = "your_secret_key"
     FLASK_ENV = "development"
     DEBUG = True
+```
 
-Templates
+### Templates
 
 The HTML templates are located in the app/templates/ directory and styled using Bootstrap for responsive design.
 
 Example Template (Login Form):
 
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,19 +146,21 @@ Example Template (Login Form):
 </div>
 </body>
 </html>
+```
 
-Testing
+
+### Testing
 
 The application uses Flask's built-in test client for unit testing.
 
 Example Test:
-
+```python
 def test_login_page():
     response = app.test_client().get('/')
     assert response.status_code == 200
-
+```
 Run tests with:
-
+```bash
 pytest
-
+```
 
