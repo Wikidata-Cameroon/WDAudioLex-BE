@@ -1,6 +1,6 @@
 # Ignore Python bytecode files
-.venv
+.venv/*
 *.pyc
 *__pycache__/
 config.yaml
-venv/
+venv/*
