@@ -1,0 +1,8 @@
+# Flask
+ secret_key ="WDAudioLex"
+
+# oauth 
+ CONSUMER_KEY = "ef9f619cfa02d15596b61b72ad35ecd4"
+ CONSUMER_SECRET = "e18d71307b49e5235294332ed327563311fd59e2"
+
+ OAUTH_MWURI =  "https://meta.wikimedia.org/w/index.php"
