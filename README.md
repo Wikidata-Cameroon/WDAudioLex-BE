@@ -1,6 +1,6 @@
 # WikiData Audio Lex Tool Backend
 
-### Overview
+## Overview
 
 The WDAudioLEx-BE Tool Backend is a backend system built using Flask, providing functionality to support login authentication via the MediaWiki API. This project is structured to facilitate modular development and deployment, using best practices in Python development, Flask frameworks, and integration with third-party APIs for secure login.
 Features
@@ -10,26 +10,30 @@ Features
     Virtual Environment Integration: Manage dependencies effectively to ensure a consistent development experience.
     Modular Architecture: Organized project structure for easy navigation and updates.
 
-### Project Structure
+## Project Structure
 
-```
-WDAudioLEx-BE/
-├── app/
-│   ├── __init__.py        # Flask app factory
-│   ├── routes.py          # Route definitions
-│   ├── forms.py           # Flask-WTF forms
-│   ├── static/            # Static files (CSS, JS, images)
-│   └── templates/         # HTML templates for rendering views
-├── clientlogin.py         # MediaWiki API integration for authentication
-├── requirements.txt       # List of dependencies
-├── config.py              # Configuration settings
-├── run.py                 # Main application entry point
-└── README.md              # Project documentation
-```
+    ```bash
+        WDAudioLEx-BE/
+        ├── app/
+        │   ├── __init__.py        # Flask app factory
+        │   ├── routes.py          # Route definitions
+        │   ├── database.py        # Database configuration
+        │   ├── models.py          # SQLAlchemy models
+        │   ├── schemas.py         # Pydantic schemas
+        │   └── crud.py            # CRUD operations
+        │   ├── forms.py           # Flask-WTF forms
+        │   ├── static/            # Static files (CSS, JS, images)
+        │   └── templates/         # HTML templates for rendering views
+        ├── clientlogin.py         # MediaWiki API integration for authentication
+        ├── requirements.txt       # List of dependencies
+        ├── config.py              # Configuration settings
+        ├── run.py                 # Main application entry point
+        └── README.md              # Project documentation
+    ```
 
-### Installation
+## Installation
 
-#### 1. Prerequisites
+### 1. Prerequisites
 
     Python Version: Flask supports Python 3.9 and newer. Ensure you have Python installed.
     Flask Dependencies:
@@ -42,20 +46,20 @@ WDAudioLEx-BE/
 
 #### 2. Setup
 
-```bash
-# Step 1: Clone the Repository
-git clone https://github.com/your-repo/WDAudioLEx-BE.git
-cd WDAudioLEx-BE
-# Step 2: Create a Virtual Environment
-python3 -m venv .venv
-source .venv/bin/activate   # On Windows: .venv\Scripts\activate
-# Step 3: Install Dependencies
-pip install -r requirements.txt
-# Step 4: Run the Applicatiozn
-python run.py
-```
+    ```bash
+    # Step 1: Clone the Repository
+    git clone https://github.com/your-repo/WDAudioLEx-BE.git
+    cd WDAudioLEx-BE
+    # Step 2: Create a Virtual Environment
+    python3 -m venv .venv
+    source .venv/bin/activate   # On Windows: .venv\Scripts\activate
+    # Step 3: Install Dependencies
+    pip install -r requirements.txt
+    # Step 4: Run the Applicatiozn
+    python run.py
+    ```
 
-Access the application at http://127.0.0.1:5000.
+Access the application at <http://127.0.0.1:5000>.
 Login Authentication with MediaWiki API
 
 The project integrates MediaWiki's login system for user authentication. Two methods are supported:
@@ -68,18 +72,18 @@ Steps:
 
 Sample Code:
 
-```bash
-response = S.post(
-    url="https://your-wiki-site/api.php",
-    data={
-        "action": "login",
-        "lgname": "your_username",
-        "lgpassword": "your_password",
-        "lgtoken": "your_login_token",
-        "format": "json"
-    }
-)
-```
+    ```bash
+    response = S.post(
+        url="https://your-wiki-site/api.php",
+        data={
+            "action": "login",
+            "lgname": "your_username",
+            "lgpassword": "your_password",
+            "lgtoken": "your_login_token",
+            "format": "json"
+        }
+    )
+    ```
 
 Method 2: Using action=clientlogin
 
@@ -91,303 +95,224 @@ This method is suited for interactive applications. It follows these steps:
 
 Sample Code:
 
-```bash
-response = S.post(
-    url="https://your-wiki-site/api.php",
-    data={
-        "action": "clientlogin",
-        "username": "your_username",
-        "password": "your_password",
-        "loginreturnurl": "http://127.0.0.1:5000/",
-        "logintoken": "your_login_token",
-        "format": "json"
-    }
-)
-```
+    ```bash
+    response = S.post(
+        url="https://your-wiki-site/api.php",
+        data={
+            "action": "clientlogin",
+            "username": "your_username",
+            "password": "your_password",
+            "loginreturnurl": "http://127.0.0.1:5000/",
+            "logintoken": "your_login_token",
+            "format": "json"
+        }
+    )
+    ```
 
-### Configuration
+## Configuration
 
 The application configuration is managed in config.py. Update the following settings as per your environment:
 
-```python
-class Config:
-    SECRET_KEY = "your_secret_key"
-    FLASK_ENV = "development"
-    DEBUG = True
-```
+    ```python
+    class Config:
+        SECRET_KEY = "your_secret_key"
+        FLASK_ENV = "development"
+        DEBUG = True
+    ```
 
-### Templates
+## Templates
 
 The HTML templates are located in the app/templates/ directory and styled using Bootstrap for responsive design.
 
 Example Template (Login Form):
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-    <h2>MediaWiki Log In</h2>
-    <form method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" id="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="form-control" id="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Log In</button>
-    </form>
-</div>
-</body>
-</html>
-```
-
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    </head>
+    <body>
+    <div class="container">
+        <h2>MediaWiki Log In</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
+    </div>
+    </body>
+    </html>
+    ```
 
 ### Testing
 
 The application uses Flask's built-in test client for unit testing.
 
 Example Test:
-```python
-def test_login_page():
-    response = app.test_client().get('/')
-    assert response.status_code == 200
-```
+
+    ```python
+    def test_login_page():
+        response = app.test_client().get('/')
+        assert response.status_code == 200
+    ```
+
 Run tests with:
-```bash
-pytest
-```
 
-### SQLAlchemy API Project Setup Guide
+    ```bash
+    pytest
+    ```
 
-## 📋 Project Overview
-This documentation provides a comprehensive guide to setting up a robust SQLAlchemy API project with best practices for database management, API development, and project structure.
+## SQLAlchemy Setup
 
-## 🛠 Prerequisites
-- Python 3.8+
-- pip (Python package manager)
-- Virtual environment tool (venv recommended)
+### 1. Add Requirements
 
-## 🔧 Project Setup
+    Add to the `requirements.txt` the following dependencies:
 
-### 1. Environment Preparation
+        ```bash
+        SQLAlchemy==2.0.19
+        Pydantic==2.3.0
+        psycopg2-binary==2.9.7
+        python-dotenv==1.0.0
+        alembic==1.11.3
+        uvicorn==0.23.2
+        ```
 
-#### Create Virtual Environment
-```bash
-# Create virtual environment
-python -m venv venv
+### 2.  Install Dependencies
 
-# Activate virtual environment
-# Windows
-venv\Scripts\activate
-# macOS/Linux
-source venv/bin/activate
-```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### 2. Dependencies Installation
+### 3. Database Configuration
 
-#### Create Requirements File
-Create `requirements.txt` with the following dependencies:
-```
-SQLAlchemy==2.0.19
-FastAPI==0.103.1
-Pydantic==2.3.0
-psycopg2-binary==2.9.7
-python-dotenv==1.0.0
-alembic==1.11.3
-uvicorn==0.23.2
-```
+#### a. Environment Variables (`.env`)
 
-#### Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+    ```bash
+    DATABASE_URL=postgresql://username:password@localhost/dbname
+    SECRET_KEY=your_secret_key
+    ```
 
-### 3. Project Structure
-```
-project_root/
-│
-├── app/
-│   ├── __init__.py
-│   ├── database.py       # Database configuration
-│   ├── models.py         # SQLAlchemy models
-│   ├── schemas.py        # Pydantic schemas
-│   └── crud.py           # CRUD operations
-│
-├── migrations/           # Alembic migrations
-├── main.py               # Main application file
-├── requirements.txt
-├── .env
-└── README.md
-```
+#### b. Database Connection (`app/database.py`)
 
-### 4. Database Configuration
+    ```python
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker, declarative_base
+    from dotenv import load_dotenv
+    import os
 
-#### Environment Variables (`.env`)
-```
-DATABASE_URL=postgresql://username:password@localhost/dbname
-SECRET_KEY=your_secret_key
-```
+    # Load environment variables
+    load_dotenv()
 
-#### Database Connection (`app/database.py`)
-```python
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-from dotenv import load_dotenv
-import os
+    # Database URL
+    DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Load environment variables
-load_dotenv()
+    # Create SQLAlchemy engine
+    engine = create_engine(DATABASE_URL)
 
-# Database URL
-DATABASE_URL = os.getenv("DATABASE_URL")
+    # Create session factory
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Create SQLAlchemy engine
-engine = create_engine(DATABASE_URL)
+    # Base class for models
+    Base = declarative_base()
 
-# Create session factory
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    def get_db():
+        db = SessionLocal()
+        try:
+            yield db
+        finally:
+            db.close()
+    ```
 
-# Base class for models
-Base = declarative_base()
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-```
-
-### 5. Database Migrations with Alembic
+### 4. Database Migrations with Alembic
 
 #### Initialize Alembic
-```bash
-alembic init migrations
-```
 
-#### Configuration
+    ```bash
+    alembic init migrations
+    ```
+
 Edit `alembic.ini` and `migrations/env.py` to point to your models and database:
 
-```python
-# In migrations/env.py
-from app.database import Base
-from app.models import *  # Import all models
-target_metadata = Base.metadata
-```
+    ```python
+    # In migrations/env.py
+    from app.database import Base
+    from app.models import *  # Import all models
+    target_metadata = Base.metadata
+    ```
 
 #### Create and Apply Migrations
-```bash
-# Generate migration
-alembic revision --autogenerate -m "Initial migration"
 
-# Apply migration
-alembic upgrade head
-```
+    ```bash
+    # Generate migration
+    alembic revision --autogenerate -m "Initial migration"
 
-## 🚀 Running the Application
+    # Apply migration
+    alembic upgrade head
+    ```
 
 ### Development Server
-```bash
-uvicorn main:app --reload
-```
 
-## 📦 Key Components
+    uvicorn main:app --reload
+
+    ```bash
+    uvicorn main:app --reload
+    ```
+
+## Key Components
 
 ### Models (`app/models.py`)
-```python
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.orm import relationship
-from .database import Base
-from datetime import datetime
 
-class User(Base):
-    __tablename__ = "users"
-    
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True)
-    email = Column(String, unique=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
-```
+    ```python
+        from sqlalchemy import Column, Integer, String, DateTime
+        from sqlalchemy.orm import relationship
+        from .database import Base
+        from datetime import datetime
+
+        class User(Base):
+            __tablename__ = "users"
+            
+            id = Column(Integer, primary_key=True, index=True)
+            username = Column(String, unique=True)
+            email = Column(String, unique=True)
+            created_at = Column(DateTime, default=datetime.utcnow)
+    ```
 
 ### Schemas (`app/schemas.py`)
-```python
-from pydantic import BaseModel, EmailStr
-from datetime import datetime
 
-class UserCreate(BaseModel):
-    username: str
-    email: EmailStr
+    ```python
+    from pydantic import BaseModel, EmailStr
+    from datetime import datetime
 
-class User(UserCreate):
-    id: int
-    created_at: datetime
+    class UserCreate(BaseModel):
+        username: str
+        email: EmailStr
 
-    class Config:
-        orm_mode = True
-```
+    class User(UserCreate):
+        id: int
+        created_at: datetime
+
+        class Config:
+            orm_mode = True
+    ```
 
 ### CRUD Operations (`app/crud.py`)
-```python
-from sqlalchemy.orm import Session
-from . import models, schemas
 
-def create_user(db: Session, user: schemas.UserCreate):
-    db_user = models.User(**user.dict())
-    db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
-    return db_user
-```
+    ```python
+    from sqlalchemy.orm import Session
+    from . import models, schemas
 
-## 🔒 Best Practices
-
-1. **Environment Management**
-   - Use `.env` for sensitive configuration
-   - Never commit sensitive information to version control
-
-2. **Database**
-   - Use migrations for schema changes
-   - Implement proper indexing
-   - Use connection pooling
-
-3. **Security**
-   - Implement authentication
-   - Use HTTPS
-   - Validate and sanitize inputs
-
-4. **Performance**
-   - Use database indexing
-   - Implement caching
-   - Use efficient query patterns
-
-## 🛠 Troubleshooting
-
-### Common Issues
-- Database connection failures
-- Migration conflicts
-- Dependency version mismatches
-
-### Debugging Steps
-1. Check `.env` configuration
-2. Verify database accessibility
-3. Ensure all dependencies are installed
-4. Check Alembic migration history
-
-## 📝 Notes
-- Customize models according to your specific requirements
-- Implement proper error handling
-- Add logging for better observability
-
-## 🤝 Contributing
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+    def create_user(db: Session, user: schemas.UserCreate):
+        db_user = models.User(**user.dict())
+        db.add(db_user)
+        db.commit()
+        db.refresh(db_user)
+        return db_user
+    ```
